@@ -1,0 +1,12 @@
+/bin/
+/input/
+/scarti/
+log.txt
+/build/
+/deploy/
+.gradle
+/.project
+/.classpath
+/.springBeans
+.settings
+/output/OLD

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property resource="application.properties" />
+
+	<!-- Timestamp per nome file -->
+	<timestamp key="timestamp" datePattern="yyyyMMdd_HHmmss" />
+	
+    <!-- Appender (s) -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %5p | %-55logger{55} | %m %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="REJECT" class="it.sydema.laweb.etl.bps.reject.Appender">
+    	<outputmode>${io.mode}</outputmode>
+    	<outputpath>${io.scarti.path}</outputpath>
+    </appender>
+
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/log_main.txt</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+          <!-- rollover daily -->
+          <fileNamePattern>log/log_main-%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+		  <maxHistory>7</maxHistory>
+          <timeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <!-- or whenever the file size reaches 20MB -->
+            <maxFileSize>20MB</maxFileSize>
+          </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+          <pattern>%d %5p | %-55logger{55} | %m %n</pattern>
+		  <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+	
+    <!-- Root logger -->
+    <root>
+        <level value="DEBUG" />
+        <appender-ref ref="CONSOLE" />
+		<appender-ref ref="ROLLING" /> 
+    </root>
+
+    <!-- Spring logger -->
+    <logger name="org.springframework">
+        <level value="ERROR" />
+    </logger>
+
+	<logger name="it.sydema.laweb.etl.bps.reject.Interceptor" level="ERROR" additivity="false">
+		<appender-ref ref="REJECT"/>
+	</logger>
+
+</configuration>
