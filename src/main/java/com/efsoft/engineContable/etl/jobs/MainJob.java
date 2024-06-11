@@ -11,21 +11,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.efsoft.engineContable.etl.MainJob.test.steps.TestStep;
+
 @Configuration
 @EnableBatchProcessing
 public class MainJob {
 
 	@Autowired private JobBuilderFactory jobs;
 
+	//Defino todos los steps
+	@Autowired
+	private TestStep testStep;
+
+
 
 	@Bean(name = "Main")
 	public Job job() throws Exception {
 
 		//
-		Flow testFlow = new FlowBuilder<SimpleFlow>("sTATIFlow").start(sTATIStep.getStep())
-				.on(ExitStatus.COMPLETED.getExitCode()).to(statiSygesStep.getStep()).from(sTATIStep.getStep())
-				.on(ExitStatus.FAILED.getExitCode()).end().from(statiSygesStep.getStep()).on("*").end().end();
-
+		Flow testFlow = new FlowBuilder<SimpleFlow>("sTATIFlow").start(testStep.getStep())
+				.on(ExitStatus.COMPLETED.getExitCode()).to(testStep.getStep()).from(testStep.getStep())
+				.on(ExitStatus.FAILED.getExitCode()).end().from(testStep.getStep()).on("*").end().end();
 
 
 		return jobs.get("Main")

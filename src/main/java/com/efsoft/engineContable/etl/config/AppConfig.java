@@ -29,6 +29,7 @@ public class AppConfig {
 	private String appHome;
 
 	private JobParameters jobParameters;
+	public static final int MAX_LINE_ERRORS = 100;
 	private static final Logger appLogger = LoggerFactory.getLogger(AppConfig.class);
 
 	@Autowired
