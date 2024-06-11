@@ -75,10 +75,10 @@ public class AppConfig {
 		setSchemaDb(env.getProperty("sql.schema.db"));
 
 		//Init de la Configuracion de la conexion al db
-		setJdbcTemplateDataSourceUrl(env.getProperty("jdbcTemplate.datasource.laweb4.url"));
-		setJdbcTemplateDataSourceUsername(env.getProperty("jdbcTemplate.datasource.laweb4.username"));
-		setJdbcTemplateDataSourcePassword(env.getProperty("jdbcTemplate.datasource.laweb4.password"));
-		setJdbcTemplateDataSourceDriverClassName(env.getProperty("jdbcTemplate.datasource.laweb4.driver-class-name"));
+		setJdbcTemplateDataSourceUrl(env.getProperty("jdbcTemplate.datasource.efsoft.url"));
+		setJdbcTemplateDataSourceUsername(env.getProperty("jdbcTemplate.datasource.efsoft.username"));
+		setJdbcTemplateDataSourcePassword(env.getProperty("jdbcTemplate.datasource.efsoft.password"));
+		setJdbcTemplateDataSourceDriverClassName(env.getProperty("jdbcTemplate.datasource.efsoft.driver-class-name"));
 
 		//Init del ioManager && Path de input && Path de output
 		setIoManager(javaIoManager);

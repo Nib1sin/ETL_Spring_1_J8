@@ -17,7 +17,15 @@ class TestTasklet extends CommonTasklet{
 
 	//Definir metodos aqui
 
+	private void testQuery(String tableName){
 
+		def query = """
+		select * from `users`
+		"""
+		//appLogger.info("query ---- " + query);
+		List<Map<String,Object>> items = jdbcTemplateDataSource.queryForList(query);
+		appLogger.info("Test ---- " + items);
+	}
 
 
 
@@ -26,8 +34,7 @@ class TestTasklet extends CommonTasklet{
 		try{
 
 			//metodos
-			appLogger.info("Test")
-
+			testQuery()
 
 		}catch(Exception e){
 

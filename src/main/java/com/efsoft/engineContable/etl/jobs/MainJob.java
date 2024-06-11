@@ -29,9 +29,11 @@ public class MainJob {
 	public Job job() throws Exception {
 
 		//
-		Flow testFlow = new FlowBuilder<SimpleFlow>("sTATIFlow").start(testStep.getStep())
-				.on(ExitStatus.COMPLETED.getExitCode()).to(testStep.getStep()).from(testStep.getStep())
-				.on(ExitStatus.FAILED.getExitCode()).end().from(testStep.getStep()).on("*").end().end();
+		Flow testFlow = new FlowBuilder<SimpleFlow>("testFlow")
+				.start(testStep.getStep())
+				.on(ExitStatus.COMPLETED.getExitCode())
+				.end()
+				.end();
 
 
 		return jobs.get("Main")

@@ -13,10 +13,6 @@
         </encoder>
     </appender>
 
-    <appender name="REJECT" class="it.sydema.laweb.etl.bps.reject.Appender">
-    	<outputmode>${io.mode}</outputmode>
-    	<outputpath>${io.scarti.path}</outputpath>
-    </appender>
 
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>log/log_main.txt</file>
@@ -48,7 +44,7 @@
         <level value="ERROR" />
     </logger>
 
-	<logger name="it.sydema.laweb.etl.bps.reject.Interceptor" level="ERROR" additivity="false">
+	<logger name="com.efsoft.engineContable.etl.reject.Interceptor" level="ERROR" additivity="false">
 		<appender-ref ref="REJECT"/>
 	</logger>
 
